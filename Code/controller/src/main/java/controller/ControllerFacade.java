@@ -2,7 +2,7 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.List;
-
+import model.Level;
 import model.Example;
 import model.IModel;
 import view.IView;
@@ -53,8 +53,18 @@ public class ControllerFacade implements IController {
             message.append('\n');
         }
         this.getView().displayMessage(message.toString());
-    }
-
+        
+        final List<Level> level1 = this.getModel().getLevel1();
+        for(int i = 0;i<level1.size();i++) {
+	        System.out.print("I = "+i+" ");
+	        System.out.println(level1.get(i).getList());
+	        this.view.Map(level1.get(i).getList());
+	        }
+	      
+        this.getView().Window();
+        }
+        
+    
     /**
      * Gets the view.
      *
