@@ -9,6 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class UserOrderTest {
+	
+	private UserOrder userOrder;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -20,6 +22,7 @@ public class UserOrderTest {
 
 	@Before
 	public void setUp() throws Exception {
+		userOrder = new UserOrder();
 	}
 
 	@After
@@ -28,14 +31,14 @@ public class UserOrderTest {
 
 	@Test
 	public void testGetOrder() {
-		final int expected = 1;
-		assertEquals(expected, 1);
+		Order expected = Order.NOP;
+		assertEquals(expected, userOrder.getOrder());
 	}
 
 	@Test
 	public void testGetPlayer() {
-		final int expected = 1;
-		assertEquals(expected, 1);
+		final int expected = 0;
+		assertEquals(expected, userOrder.getPlayer());
 	}
 
 }
