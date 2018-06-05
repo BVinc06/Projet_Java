@@ -8,8 +8,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import model.IModel;
+import model.ModelFacade;
+import view.IView;
+import view.ViewFacade;
+
 public class ControllerFacadeTest {
 	
+	private IView view;
+	private IModel model;
 	@SuppressWarnings("unused")
 	private ControllerFacade controllerFacade;
 
@@ -23,29 +30,26 @@ public class ControllerFacadeTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.controllerFacade = new ControllerFacade(null, null);
+		view = new ViewFacade();
+		model = new ModelFacade();
+		this.controllerFacade = new ControllerFacade(view, model);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testStart() {
-		final int expected = 1;
-		assertEquals(expected, 1);
-	}
 
 	@Test
 	public void testGetView() {
-		final int expected = 1;
-		assertEquals(expected, 1);
+		IView expected = view;
+		assertEquals(expected, controllerFacade.getView());
 	}
-
+	
 	@Test
 	public void testGetModel() {
-		final int expected = 1;
-		assertEquals(expected, 1);
+		IModel expected = model;
+		assertEquals(expected, controllerFacade.getModel());
 	}
 
 }

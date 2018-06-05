@@ -23,7 +23,7 @@ public class LorannControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+		//lorannController = new LorannController();
 	
 	}
 
