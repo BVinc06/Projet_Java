@@ -1,0 +1,36 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `level1`()
+BEGIN SELECT * FROM level1;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `level2`()
+BEGIN SELECT * FROM level2;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `level3`()
+BEGIN SELECT * FROM level3;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `level4`()
+BEGIN SELECT * FROM level4;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `level5`()
+BEGIN SELECT * FROM level5;
+END$$
+DELIMITER ;
