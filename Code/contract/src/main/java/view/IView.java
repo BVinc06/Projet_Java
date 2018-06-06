@@ -17,5 +17,7 @@ public interface IView {
     void displayMessage(String message);
 	void Window();
 	public void Map (int number);
-
+	public int[] getMyMap();
+	void setMyMap();
+	//int ScanMap();
 }

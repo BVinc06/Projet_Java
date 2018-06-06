@@ -47,4 +47,6 @@ public interface IModel {
     List<Level> getLevel3() throws SQLException;
     List<Level> getLevel4() throws SQLException;
     List<Level> getLevel5() throws SQLException;
+
+
 }
