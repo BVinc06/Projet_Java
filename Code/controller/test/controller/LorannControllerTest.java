@@ -8,7 +8,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class UserOrderTest {
+public class LorannControllerTest {
+	
+	@SuppressWarnings("unused")
+	private LorannController lorannController;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -20,6 +23,8 @@ public class UserOrderTest {
 
 	@Before
 	public void setUp() throws Exception {
+		
+	
 	}
 
 	@After
@@ -27,13 +32,37 @@ public class UserOrderTest {
 	}
 
 	@Test
-	public void testGetOrder() {
+	public void testIOrderPerform() {
 		final int expected = 1;
 		assertEquals(expected, 1);
 	}
 
 	@Test
-	public void testGetPlayer() {
+	public void testOrderPerform() {
+		final int expected = 1;
+		assertEquals(expected, 1);
+	}
+
+	@Test
+	public void testPlay() {
+		final int expected = 1;
+		assertEquals(expected, 1);
+	}
+
+	@Test
+	public void testSetViewSystem() {
+		final int expected = 1;
+		assertEquals(expected, 1);
+	}
+
+	@Test
+	public void testCastSpell() {
+		final int expected = 1;
+		assertEquals(expected, 1);
+	}
+
+	@Test
+	public void testGameLoop() {
 		final int expected = 1;
 		assertEquals(expected, 1);
 	}

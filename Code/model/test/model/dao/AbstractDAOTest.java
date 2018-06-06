@@ -1,4 +1,4 @@
-package controller;
+package model.dao;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class UserOrderTest {
+public class AbstractDAOTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -27,13 +27,19 @@ public class UserOrderTest {
 	}
 
 	@Test
-	public void testGetOrder() {
+	public void testExecuteQuery() {
 		final int expected = 1;
 		assertEquals(expected, 1);
 	}
 
 	@Test
-	public void testGetPlayer() {
+	public void testExecuteUpdate() {
+		final int expected = 1;
+		assertEquals(expected, 1);
+	}
+
+	@Test
+	public void testPrepareCall() {
 		final int expected = 1;
 		assertEquals(expected, 1);
 	}
