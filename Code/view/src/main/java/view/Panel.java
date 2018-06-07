@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.util.concurrent.ThreadLocalRandom;
-
+import java.util.*;
 public class Panel extends JPanel implements IPanel, KeyListener {
 	
 	
@@ -38,29 +38,40 @@ public class Panel extends JPanel implements IPanel, KeyListener {
 		// TODO Auto-generated constructor stub
 		this.MyMap = myMap;
 		System.out.println("test pan");
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				
+				monster();
+			}
+			
+		}, 500, 150);
 	}
 	
 
 	public void paintComponent(Graphics g) {
 		try {
-			Image wall = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\horizontal_bone.png"));
-			Image lorau = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\lorann_u.png"));
-			Image lorab = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\lorann_b.png"));
-			Image loral = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\lorann_l.png"));
-			Image lorar = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\lorann_r.png"));
-			Image gold = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\purse.png"));
-			Image door = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\gate_closed.png"));
-			Image doorcl = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\gate_open.png"));
-			Image ball = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\crystal_ball.png"));
-			Image evil = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\monster_1.png"));
-			Image wall2 = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\vertical_bone.png"));
-			Image corn = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\bone.png"));
-			Image nothing = ImageIO.read(new File("D:\\1 Cesi\\AProjet Java\\sprite\\black.png"));
-			Image zero = ImageIO.read(new File("D:\\1 Cesi\\AProjet Java\\sprite\\0.png"));
-			Image one = ImageIO.read(new File("D:\\1 Cesi\\AProjet Java\\sprite\\1.png"));
-			Image two = ImageIO.read(new File("D:\\1 Cesi\\AProjet Java\\sprite\\2.png"));
-			Image three = ImageIO.read(new File("D:\\1 Cesi\\AProjet Java\\sprite\\3.png"));
-			Image four = ImageIO.read(new File("D:\\1 Cesi\\AProjet Java\\sprite\\4.png"));
+			Image wall = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\horizontal_bone.png"));
+			Image lorau = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\lorann_u.png"));
+			Image lorab = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\lorann_b.png"));
+			Image loral = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\lorann_l.png"));
+			Image lorar = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\lorann_r.png"));
+			Image gold = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\purse.png"));
+			Image door = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\gate_closed.png"));
+			Image doorcl = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\gate_open.png"));
+			Image ball = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\crystal_ball.png"));
+			Image evil = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\monster_1.png"));
+			Image wall2 = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\vertical_bone.png"));
+			Image corn = ImageIO.read(new File ("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\bone.png"));
+			Image nothing = ImageIO.read(new File("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\black.png"));
+			Image zero = ImageIO.read(new File("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\0.png"));
+			Image one = ImageIO.read(new File("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\1.png"));
+			Image two = ImageIO.read(new File("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\2.png"));
+			Image three = ImageIO.read(new File("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\3.png"));
+			Image four = ImageIO.read(new File("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\4.png"));
+			Image bullet = ImageIO.read(new File("C:\\Users\\Joseph LIAGRE\\Documents\\sprite\\fireball_1.png"));
 			Image img = nothing;
 			//Image wall = ImageIO.read(new File ("D:\\1 Cesi\\AProjet Java\\sprite\\vertical_bone.png"));
 		
@@ -78,6 +89,7 @@ public class Panel extends JPanel implements IPanel, KeyListener {
 			if(MyMap[i] == 7) {img = corn;}
 			if(MyMap[i] == 8) {img = wall2;}
 			if(MyMap[i] == 9) {img = doorcl;Posdoor = i;}
+			if(MyMap[i] == 13) {img = bullet;}
 			
 			if(MyMap[i] == 20) {img = zero;}
 			if(MyMap[i] == 21) {img = one;}
@@ -101,46 +113,113 @@ public class Panel extends JPanel implements IPanel, KeyListener {
 			catch (IOException e) {
 			      e.printStackTrace();
 		}
-		direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
-		monster();		
+		
+		
+				
 		x = 0;
 		y = 0; 
 		
 	}	
+	
+
+	
+	
 		//g.drawImage(imgmap.getImage(), HEIGHT, WIDTH, null);
 	public void monster() {
 				
 	    if (direc == 1){ //UP
 	    	if (MyMap[Posmons-25]==6) { 
-	    			MyMap[Posmons-25] = 5;
+	    			
+	    		MyMap[Posmons-25] = 5;
 	    			MyMap[Posmons] = 6;
 	    			Posmons = Posmons-25;
+	    			repaint();
+	    			
 	    		}
-	    	else direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	else {
+	    		if (MyMap[position-25] == 5 || MyMap[position+25] == 5 || MyMap[position-1] == 5 || MyMap[position+1] == 5)
+	    		{
+	    		
+	    			int exit = JOptionPane.showConfirmDialog(null, "You Died","LOSER",JOptionPane.DEFAULT_OPTION);
+	    			
+	    			
+	                if (exit == -1 || exit == 0)
+	                {
+	                  System.exit(0);
+	                }
+	                
+	    		}
+	    		direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	}
 	    }
 	    if (direc == 2){ //right
 	    	if (MyMap[Posmons+1]==6) { 
 	    			MyMap[Posmons+1] = 5;
 	    			MyMap[Posmons] = 6;
 	    			Posmons=Posmons+1;
+	    			repaint();
 	    		}
-	    	else direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	else {
+	    		if (MyMap[position-25] == 5 || MyMap[position+25] == 5 || MyMap[position-1] == 5 || MyMap[position+1] == 5)
+	    		{
+	    			
+	    			int exit = JOptionPane.showConfirmDialog(null, "You Died","LOSER",JOptionPane.DEFAULT_OPTION);
+	    			
+	    			
+	                if (exit == -1 || exit == 0)
+	                {
+	                  System.exit(0);
+	                }
+	                
+	    		}
+	    		direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	}
 	    }
 	    if (direc == 3){ //left
 	    	if (MyMap[Posmons-1]==6) { 
 	    			MyMap[Posmons-1] = 5;
 	    			MyMap[Posmons] = 6;
 	    			Posmons=Posmons-1;
+	    			repaint();
 	    		}
-	    	else direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	else {
+	    		if (MyMap[position-25] == 5 || MyMap[position+25] == 5 || MyMap[position-1] == 5 || MyMap[position+1] == 5)
+	    		{
+	    		
+	    			int exit = JOptionPane.showConfirmDialog(null, "You Died","LOSER",JOptionPane.DEFAULT_OPTION);
+	    			
+	    			
+	                if (exit == -1 || exit == 0)
+	                {
+	                  System.exit(0);
+	                }
+	                
+	    		}
+	    		direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	}
 	    }
 	    if (direc == 4){ //UP
 	    	if (MyMap[Posmons+25]==6) { 
 	    			MyMap[Posmons+25] = 5;
 	    			MyMap[Posmons] = 6;
 	    			Posmons=Posmons+25;
+	    			repaint();
 	    		}
-	    	else direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	else {
+	    		if (MyMap[position-25] == 5 || MyMap[position+25] == 5 || MyMap[position-1] == 5 || MyMap[position+1] == 5)
+	    		{
+	    		
+	    			int exit = JOptionPane.showConfirmDialog(null, "You Died","LOSER",JOptionPane.DEFAULT_OPTION);
+	    			
+	    			
+	                if (exit == -1 || exit == 0)
+	                {
+	                  System.exit(0);
+	                }
+	                
+	    		}
+	    		direc = ThreadLocalRandom.current().nextInt(1, 4 + 1);
+	    	}
 	    }
 	}
 	@Override
@@ -150,12 +229,19 @@ public class Panel extends JPanel implements IPanel, KeyListener {
         switch (codeDeLaTouche) // Les valeurs sont contenue dans KeyEvent. Elles commencent par VK_ et finissent par le nom de la touche
         {
         
+        
         case KeyEvent.VK_ESCAPE:
     		System.out.println("QUITTER");
     		
     		System.exit(0);
-    		
-            case KeyEvent.VK_UP:
+    	
+    	
+           	   	
+    	
+ 
+    	
+    	
+        case KeyEvent.VK_UP:
          
 		// TODO Auto-generated method stub
             	Lorann = 12;
